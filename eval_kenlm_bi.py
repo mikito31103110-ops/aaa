@@ -2,22 +2,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import annotations
 
-"""
-1) coord_csv + images_dir から各bbox cropを作って timm model で topK候補を出す
-2) 同じページ内の bbox を「右列→左列、各列は上→下」で並べ替える（XYcut“風”）
-3) gt_pages/{page}.txt をGTとして読み込み、同じ順で比較
-4) KenLM(arpa) を使って beam search で LM付き復元も出す
-5) ページ単位 / 全体の精度（位置一致率）を出す
 
-★今回の追加：
-- 逆向きLM（下→上に学習したARPA）を --arpa-bwd で指定可能
-- --decode-mode:
-    fwd : 前向きLMのみ（従来）
-    bwd : 逆向きLMのみ（itemsを逆順にして復元→出力を逆順に戻す）
-    bi  : 前向きLMでN-best生成 → 逆向きLMで再スコアして最終決定（両方向参照の現実解）
-- --nbest : bi 用のN-best数
-- --lambda-bwd : 逆向きLMの係数
-"""
 
 import argparse
 from pathlib import Path

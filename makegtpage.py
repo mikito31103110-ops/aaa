@@ -1,22 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-make_gt_pages.py
-- <Image:...> で区切られた貼り付けテキストから
-  KODAI2/gt_pages/<book_id>/ に 1ページ1txt を生成する。
-- 分割時に本文中の「〓」(ゲタ) を除去する
-- 「〳〵」「〴〵」を、それぞれ「〱」「〲」に正規化する（幅ズレ対策）
-- 全角カッコ（...）の中身を丸ごと削除する（例: （「白」＋「句」） → 削除）
 
-使い方:
-python makegtpage.py \
-  --input 100249537.txt \
-  --out-root ~/Documents/saito/KODAI2/gt_pages \
-  --book-id 100249537
-
-出力:
-  gt_pages/XXXXXXXXX/XXXXXXXXX_000XX_X.txt
-"""
 
 from __future__ import annotations
 

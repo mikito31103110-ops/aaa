@@ -1,28 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-train_full.py
-- KODAI/full/各文献/characters/UNICODE/ にある 1文字画像を全件学習する分類器
-- 文献（doc）単位で train/val split（リークを避ける）
-- classes は full 全体の Unicode フォルダ名の集合で固定
-- tqdm 進捗バー（train/val）+ 残り時間(ETA)を「分:秒」で明示表示
-- AMP は torch.amp の新API
-- 勾配蓄積 (gradient accumulation) 対応: --accum-steps
-- 長尾対策: --use-weighted-sampler（inverse freq）
-- 指標は train_loss と val_top1 のみ（必要最小限）
-- 追加: epoch単位のETA（全学習があと何分で終わるか）を表示
 
-python train_full.py \
-  --full-root /home/ihpc/Documents/saito/KODAI/full \
-  --model efficientnet_b0 \
-  --epochs 100 \
-  --batch-size 64 \
-  --img-size 224 \
-  --lr 1e-3 \
-  --out-dir ./runs/full_effb0 \
-  --amp \
-  --use-weighted-sampler
-"""
 
 from __future__ import annotations
 

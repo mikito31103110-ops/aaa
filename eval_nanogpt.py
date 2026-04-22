@@ -2,39 +2,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import annotations
 
-"""
-eval_xycut_greedy_vs_nanogpt.py
 
-1) coord_csv + images_dir から各bbox cropを作って timm model で topK候補を出す
-2) 同じページ内の bbox を「右列→左列、各列は上→下」で並べ替える（XYcut“風”）
-3) gt_pages/{page}.txt をGTとして読み込み、同じ順で比較
-4) nanoGPT(ckpt+meta.pkl) を使って beam search で LM付き復元も出す
-5) ページ単位 / 全体の精度（位置一致率）を出す
-
-可視化（全ページ）:
-- 元画像上に bbox枠 + 3文字（Greedy/GT/LM）を描画して保存
-- 色は LMの効果で決める:
-    FIX   : Greedy誤り→LM正解 = 緑
-    WORSE : Greedy正解→LM誤り = 赤
-    BOTHx : Greedy誤り かつ LM誤り = 黄
-  ※OK（両方正解）はデフォルトで描かない（誤り解析が目的なので）。
-
-統計:
-- GT文字ごとに OK/FIX/WORSE/BOTHx 等を集計しCSV出力
-- ★Oracle@K（GTがtopKに入っている率）を文字ごとに追加
-- ★混同行列（GT→予測）を Greedy と LM でそれぞれ上位ペアを出力
-
-重要:
-- len(gt_chars) != len(bbox) のページは比較不能なので skip（統計も可視化も対象外）
-
-注意（KenLM→nanoGPTで変わる点）:
-- EfficientNet側は ln(softmax)（自然対数）
-- nanoGPT側も ln の logprob
-  → KenLM(log10)のような底の違いが無いので、lambda の意味が素直になります。
-
-nanoGPT読み込みの前提:
-- nanoGPTリポジトリの model.py が import 可能であること（GPT/GPTConfig）
-"""
 
 import argparse
 import pickle

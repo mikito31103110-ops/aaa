@@ -1,15 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-verify_all.py
-- A) クロップ座標がページ画像と一致してるか（縮尺/回転/反転/座標系ズレ）
-- B) 推論前処理の一致（RGB化、正規化の前段の画像統計など)
-- C) 評価サンプル不足（macro系が暴れるのは当然か）を定量化
-- ついでに "ページ画像にBBoxを描画した可視化" と "切り出しパッチ" を大量に吐く
 
-依存: pandas, pillow
-（torch/torchvision無くても A/C は見れる）
-"""
 
 from __future__ import annotations
 import argparse, random, math, json
@@ -48,16 +39,6 @@ def clamp_bbox(x, y, w, h, W, H):
 
 
 def crop_variants(img: Image.Image, bbox):
-    """
-    座標系バグの典型を一気に可視化するために、
-    同じbboxを以下の変換で試して patch を返す。
-
-    - normal
-    - flipX / flipY
-    - rot90/180/270（回転後に bbox を貼るのは本当は別計算が必要だが、
-      「座標系がそもそも回転してる」ケースを雑に炙り出す用途で、
-      回転画像に対して "同じbbox" を切る方式にしている）
-    """
     W, H = img.size
     x0, y0, x1, y1 = bbox
     out = {}
@@ -79,12 +60,7 @@ def crop_variants(img: Image.Image, bbox):
 
 
 def patch_score(p: Image.Image) -> float:
-    """
-    「切り出しがそれっぽいか」を雑にスコア化（0〜1）。
-    - ほぼ真っ白/真っ黒なら低スコア
-    - 画素の分散がある程度あれば高スコア
-    くずし字は背景紙と墨のコントラストがあるので、分散が出やすい想定。
-    """
+
     g = p.convert("L")
     # downsample for speed
     g = g.resize((max(8, g.size[0] // 4), max(8, g.size[1] // 4)))

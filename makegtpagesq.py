@@ -2,21 +2,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import annotations
 
-"""
-makegtpages_batch_from_full.py
 
-KODAI/full 配下の全文献（coordinate.csvがあるもの）について
-gt_pages/<book_id>/<page>.txt を一括生成する。
-
-使う読順は、あなたが貼った makegtpages_from_coord_csv.py と同一:
-- 列: 右→左（縦書き想定）
-- 列内: row_id=cy//row_band で量子化して (row_id, -cx, cy) で並べる
-  => yの微小差を許容しつつ「右を少し優先」
-
-入出力:
-- 入力: <full_root>/<book_id>/<book_id>_coordinate.csv
-- 出力: <out_root>/<book_id>/<Image>.txt
-"""
 
 import argparse
 from pathlib import Path

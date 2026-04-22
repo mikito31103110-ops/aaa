@@ -2,34 +2,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import annotations
 
-"""
-1) coord_csv + images_dir から各bbox cropを作って timm model で topK候補を出す
-2) 同じページ内の bbox を「右列→左列、各列は上→下」で並べ替える（XYcut“風”）
-3) gt_pages/{page}.txt をGTとして読み込み、同じ順で比較
-4) KenLM(arpa) を使って beam search で LM付き復元も出す
-5) ページ単位 / 全体の精度（位置一致率）を出す
-
-可視化（全ページ）:
-- 元画像上に bbox枠 + 3文字（Greedy/GT/LM）を描画して保存
-- 色は LMの効果で決める:
-    FIX   : Greedy誤り→LM正解 = 緑
-    WORSE : Greedy正解→LM誤り = 赤
-    BOTHx : Greedy誤り かつ LM誤り = 黄
-  ※OK（両方正解）はデフォルトで描かない（誤り解析が目的なので）。
-
-統計:
-- GT文字ごとに OK/FIX/WORSE/BOTHx 等を集計しCSV出力
-- Oracle@K（GTがtopKに入っている率）を文字ごとに追加
-- 混同行列（GT→予測）を Greedy と LM でそれぞれ上位ペアを出力
-
-重要:
-- len(gt_chars) != len(bbox) のページは比較不能なので skip（統計も可視化も対象外）
-
-今回の修正:
-- lambda を 0.2 から 2.0 まで 0.2 刻みで自動 sweep
-- 出力先は outputs/val/kenlm/<lambda>/ に保存
-- それ以外の処理は元コードと同じ思想を維持
-"""
 
 import argparse
 from pathlib import Path

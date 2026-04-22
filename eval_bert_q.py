@@ -2,17 +2,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import annotations
 
-"""
-BERT-based rerank evaluator for OCR top-k candidates
-
-変更点:
-- overlay文字の表示順: 左=GT, 真ん中=Baseline(Greedy), 右=BERT
-- 〱対策: 日本語CJKフォントを優先ロード
-- --text-y-offset を追加
-    負の値: 文字を上へ
-    正の値: 文字を下へ
-    例: --text-y-offset -3
-"""
 
 import argparse
 from pathlib import Path

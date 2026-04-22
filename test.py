@@ -2,49 +2,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import annotations
 
-"""
-test.py (完全コード)
-
-目的:
-- coord_csv + images_dir から bbox crop を作って分類器で topK を出す
-- 右列→左列、各列は上→下 の順で並べ替え（簡易XYcut風）
-- gt_pages/{page}.txt を GT として同じ順で比較
-- KenLM(arpa) を使って beam search で LM付き復元も出す
-- overlay / 統計 / 混同行列 / Oracle@K を出す
-
-重要な修正点（あなたのログの0%原因）:
-- ckpt が projection を `shortcut` という名前で保存しているのに、
-  評価側が `proj` になっていると、strict=Falseで黙って壊れて 0% になります。
-  => PreActBasicBlock を ckpt 互換（self.shortcut）に固定し、
-     load_state_dict はデフォルト strict=True で壊れ検知します。
-
-追加でハマりがちな点:
-- crop のサイズがバラバラだと torch.stack で落ちます
-  => crop は必ず LetterboxSquare(args.img_size) で固定サイズ化します。
-
-使い方例:
-python test.py \
-  --coord-csv /home/ihpc/Documents/saito/KODAI/full/100249537/100249537_coordinate.csv \
-  --images-dir /home/ihpc/Documents/saito/KODAI/full/100249537/images \
-  --gt-dir /home/ihpc/Documents/saito/KODAI2/gt_pages/100249537 \
-  --arpa /home/ihpc/Documents/saito/KODAI2/handchar_kenlm.arpa \
-  --ckpt ./runs/kodai_preact18/best.pth \
-  --classes ./runs/kodai_preact18/classes.txt \
-  --model preactresnet18 \
-  --img-size 224 \
-  --lambda 0.6 \
-  --topk 5 \
-  --beam-size 5 \
-  --annotate-all \
-  --stats \
-  --oracle-k 5 \
-  --confusion-topn 200 \
-  --confusion-min-count 5 \
-  --min-char-count 10 \
-  --font-path /home/ihpc/Documents/saito/KODAI/fonts/IPAexGothic.ttf \
-  --box-width 4 \
-  --out-dir ./outputs/res_preact
-"""
 
 import argparse
 import os

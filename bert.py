@@ -25,16 +25,13 @@ from transformers import (
 )
 
 
-# =========================================================
-# ここはあなたの環境に合わせて書き換えてください
-# =========================================================
+
 ENCODING = "utf-8"
 
 # gt_pages のルート
 DEFAULT_GT_ROOT = "/home/ihpc/Documents/saito/KODAI2/gt_pages"
 
 # 学習対象の文献ID
-# 必要に応じて追加してください
 DEFAULT_TRAIN_BOOK_IDS = [
     "100241706",
     "100249371",

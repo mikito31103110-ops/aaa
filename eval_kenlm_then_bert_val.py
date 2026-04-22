@@ -2,36 +2,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import annotations
 
-"""
-eval_kenlm_then_bert.py
-
-目的:
-1) coord_csv + images_dir から各 bbox crop を作り、timm model で topK 候補を出す
-2) 同じページ内の bbox を「右列→左列、各列は上→下」で並べ替える
-3) gt_pages/{page}.txt を GT として読み込み、同じ順で比較
-4) Stage-1: KenLM(arpa) を使って beam search で系列復元する
-5) Stage-2: KenLM出力列を初期値として BERT(char MLM) で iterative masked rerank する
-6) ページ単位 / 全体の精度を出す
-7) overlay / char_stats / confusion を出す
-
-重要:
-- これは image+kenlm+bert の同時融合ではない
-- 直列:
-    OCR topK -> KenLM beam -> BERT rerank
-- BERT段では KenLMスコアは使わない
-- BERT段の fused は:
-    fused = image_logp + bert_lambda * bert_score
-  ただし初期列は greedy ではなく KenLM 出力
-
-追加:
-- lambda sweep 機能
-  * --sweep-target none|bert|kenlm|both
-  * --sweep-start
-  * --sweep-end
-  * --sweep-step
-
-既定では従来どおり単発実行。
-"""
 
 import argparse
 from pathlib import Path

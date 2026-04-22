@@ -2,27 +2,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import annotations
 
-"""
-BERT-based rerank evaluator for OCR top-k candidates
-
-何をするか:
-1) coord_csv + images_dir から各 bbox crop を作り、timm model で topK候補を出す
-2) 同じページ内の bbox を「右列→左列、各列は上→下」で並べ替える
-3) gt_pages/{page}.txt を GT として読み込み、同じ順で比較
-4) BERT(char MLM) を使って topK 候補を文脈再スコアリングする
-5) ページ単位 / 全体の精度を出す
-6) overlay / char_stats / confusion を出す
-
-重要:
-- KenLM 版と I/O / 評価枠組みは揃える
-- ただし BERT は系列確率をそのまま出せないので、
-  探索は「iterative masked rerank」で置き換える
-
-今回の修正:
-- bert-lambda を 0.2 から 2.0 まで 0.2 刻みで自動 sweep
-- 出力先は outputs/val/bert/<lambda>/ に保存
-- 画像モデル推論は 1 回だけ行い、その結果を使い回す
-"""
 
 import argparse
 from pathlib import Path

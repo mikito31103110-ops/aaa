@@ -1,15 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-arpa作成用コマンド（複数文献 gt_pages 対応）
-- 学習用BOOK_IDSのみで train_char.txt を作って arpa を生成
-- 大枠（gt_pages→train_char.txt→lmplz→arpa）は変更しない
 
-★追加:
-- REVERSE_TRAIN を True/False で切り替えるだけで、
-  現状（上→下）/ 反転（下→上）を選べる
-- 反転時に上書きしたくない場合は、ファイル名切替ブロックを有効化
-"""
 
 from pathlib import Path
 import subprocess
@@ -21,10 +12,10 @@ import sys
 # =========================
 BASE_DIR = Path(__file__).resolve().parent
 
-# gt_pages のルート（例: KODAI2/gt_pages）
+# gt_pages のルート
 GT_ROOT = BASE_DIR / "gt_pages"
 
-# ========= 学習用（あなた指定） =========
+# ========= 学習用 =========
 TRAIN_BOOK_IDS = [
     "100241706",
     "100249371",
