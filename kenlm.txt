@@ -1,0 +1,110 @@
+=== OVERALL CHAR STATS ===
+total=29584
+ok=27759  (0.938311)
+fix=580  (0.019605)
+worse=36  (0.001217)
+bothx=1209  (0.040867)
+
+oracle_k=5
+oracle_in_topK=29364  (0.992564)
+
+greedy_error_total=1789
+repair_rate = fix / (fix+bothx) = 0.324203
+
+
+=== OVERALL CHAR STATS ===
+total=29584
+ok=27759  (0.938311)
+fix=580  (0.019605)
+worse=36  (0.001217)
+bothx=1209  (0.040867)
+
+oracle_k=5
+oracle_in_topK=29364  (0.992564)
+
+greedy_error_total=1789
+repair_rate = fix / (fix+bothx) = 0.324203
+
+
+=== OVERALL CHAR STATS ===
+total=29584
+ok=27724  (0.937128)
+fix=794  (0.026839)
+worse=71  (0.002400)
+bothx=995  (0.033633)
+
+oracle_k=5
+oracle_in_topK=29364  (0.992564)
+
+greedy_error_total=1789
+repair_rate = fix / (fix+bothx) = 0.443823
+
+
+=== OVERALL CHAR STATS ===
+total=29584
+ok=27711  (0.936689)
+fix=866  (0.029273)
+worse=84  (0.002839)
+bothx=923  (0.031199)
+
+oracle_k=5
+oracle_in_topK=29364  (0.992564)
+
+greedy_error_total=1789
+repair_rate = fix / (fix+bothx) = 0.484069
+
+
+=== OVERALL CHAR STATS ===
+total=29584
+ok=27711  (0.936689)
+fix=866  (0.029273)
+worse=84  (0.002839)
+bothx=923  (0.031199)
+
+oracle_k=5
+oracle_in_topK=29364  (0.992564)
+
+greedy_error_total=1789
+repair_rate = fix / (fix+bothx) = 0.484069
+
+
+=== OVERALL CHAR STATS ===
+total=29584
+ok=27640  (0.934289)
+fix=963  (0.032551)
+worse=155  (0.005239)
+bothx=826  (0.027920)
+
+oracle_k=5
+oracle_in_topK=29364  (0.992564)
+
+greedy_error_total=1789
+repair_rate = fix / (fix+bothx) = 0.538290
+
+
+=== OVERALL CHAR STATS ===
+total=29584
+ok=27604  (0.933072)
+fix=997  (0.033701)
+worse=191  (0.006456)
+bothx=792  (0.026771)
+
+oracle_k=5
+oracle_in_topK=29364  (0.992564)
+
+greedy_error_total=1789
+repair_rate = fix / (fix+bothx) = 0.557295
+
+
+=== OVERALL CHAR STATS ===
+total=29584
+ok=27568  (0.931855)
+fix=1032  (0.034884)
+worse=227  (0.007673)
+bothx=757  (0.025588)
+
+oracle_k=5
+oracle_in_topK=29364  (0.992564)
+
+greedy_error_total=1789
+repair_rate = fix / (fix+bothx) = 0.576859

@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+
+bert/
+kenlm/
+ku_bert_wwm/
+nanoGPT/
+outputs/
+rag/
+runs/
+xy-cut/
+openaitest.py
+eval_chatgpt_noRAG.py
+eval_chattest.py
