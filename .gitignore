@@ -12,3 +12,15 @@ xy-cut/
 openaitest.py
 eval_chatgpt_noRAG.py
 eval_chattest.py
+eval_bert_val.py
+eval_kenlm_bi.py
+eval_kenlm_val.py
+eval_kenlm_then_bert_val.py
+gurahu.py
+makegtpage.py
+makegtpagesq.py
+re_train.py
+train_full.py
+verify_all.py
+split_gt_pages.py
+maketrainchunks.py
