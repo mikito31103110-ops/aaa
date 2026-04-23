@@ -24,3 +24,4 @@ train_full.py
 verify_all.py
 split_gt_pages.py
 maketrainchunks.py
+test.py
