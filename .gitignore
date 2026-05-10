@@ -54,3 +54,5 @@ split_merged_gt_by_csv.py
 xycut.py
 csv_img_bbox.py
 effi_train.pyhandtrain_charo3_rev.txt
+xycut.py
+checkbbox.py
